@@ -1,11 +1,9 @@
 const { expect } = require('chai');
-// import setText from './reusables/reusable';
-
 const Page = require('./page');
 
 class SetupPage extends Page{
 
-    get assertText() {
+    get headerText() {
         return $('span[title="Setup"]');
     }
 
@@ -28,11 +26,11 @@ class SetupPage extends Page{
         return $('//span[text()="New Lead"]/..//lightning-icon//span');
     }
 
-    get lastnameText(){
+    get lastname(){
         return $('//input[@name="lastName"]');
     }
 
-    get companyText(){
+    get company(){
         return $('//input[@name="Company"]');
     }
 
@@ -44,45 +42,8 @@ class SetupPage extends Page{
         return $('//lightning-formatted-name[@slot="primaryField"]')
     }
 
-    async waitForText(number) {
-        await browser.pause(number * 1000);
-    }
-
-    async isVisible(text) {
-        const selector = await this.assertText;
-        const displayedText = await selector.getText();
-        expect(displayedText).to.equal(text);
-    }
-    async clickAppLauncher(){
-        await this.applauncherButton.click();
-    }
-
-    async clickSaleslogo(){
-        await this.salesLogo.click();
-    }
-    
-    // async clickSearchbar(){
-    //     await this.searchBar.click();
-    // }
-    async setText(text){
-        await this.searchBar.setValue(text);
-    }
-
-    async clickLeads(){
-        await this.leadsArrowText.click();
-    }
-    async clickNewLeads(){
-        await this.newLeadText.click();
-    }
-
-    async clickSave(){
-        await this.saveButton.click();
-    }
-
-    async assertName(text){
-        const selector = await this.nameheader;
-        const displayedText = await selector.getText();
-        expect(displayedText).to.equal(text);
+    get custom() {
+        return "CK";
     }
 
 }

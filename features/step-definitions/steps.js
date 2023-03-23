@@ -1,21 +1,12 @@
 const { Given, When, Then } = require('@wdio/cucumber-framework');
 
 const LoginPage = require('../pageobjects/login.page');
-// const { setText } = require('../pageobjects/reusables/reusable');
-const SetupPage = require('../pageobjects/setup.page');
-// const { inputUsername } = require('../pageobjects/login.page');
-
-
-
+const setupPage = require('../pageobjects/setup.page');
 const SecurePage = require('../pageobjects/secure.page');
-// const elements = {
-//     username: inputUsername
-// }
-
+const { expect } = require('chai');
 const pages = {
     login: LoginPage,
-    // applauncher: LoginPage,
-    setup: SetupPage
+    setup: setupPage,
 }
 
 Given(/^I am on the (\w+) page$/, async (page) => {
@@ -34,64 +25,59 @@ Then(/^I should see a flash message saying (.*)$/, async (message) => {
     await expect(SecurePage.flashAlert).toHaveTextContaining(message);
 });
 
-// When(/^set (\w+) text as (.*) on (\w+) page$/, async (element, text, page) => {
-//     const webElement = await elements[element]
-//     await setText(text, webElement);
+When(/^wait for (\w+) seconds$/, async (time) => {
+    await browser.pause(time * 1000);
+});
+
+When(/^expect (\w+) text on (\w+) page to equal (.*)$/, async (element, pagename,text) => {
+    let exp = pagename+'Page.'+element+'Text';
+    console.log(exp);
+    const selector = await eval(exp);
+    const displayedText = await selector.getText();
+    expect(displayedText).to.equal(text);
+    
+});
+
+// When(/^expect nameHeader text on (\w+) page to equal (.*)$/, async (pagename,text) => {
+//     const selector = await pages[pagename].nameheader;
+//     const displayedText = await selector.getText();
+//     expect(displayedText).to.equal(text);
 // });
 
-When(/^wait for (\w+) seconds$/, async (time) => {
-    // await browser.pause();
-    await SetupPage.waitForText(time);
+When(/^click appLauncher button on (\w+) page$/, async(pagename) => {
+     await pages[pagename].applauncherButton.click();
 });
 
-When(/^expect header text on setup page to equal (.*)$/, async (text) => {
-    await SetupPage.isVisible(text);
-});
-
-When(/^expect nameHeader text on setup page to equal (.*)$/, async (text) => {
-    await SetupPage.assertName(text);
-});
-
-When(/^click (\w+) button on (\w+) page$/, async(element, page) => {
-    // await pages[container].clickAppLauncher();
-    // await SetupPage.clickAppLauncher();
-    // await pages[page][element].click();
-   console.log(Object.getOwnPropertyNames(SecurePage));
-
-});
-When(/^click Sales logo on setup page$/, async() => {
-    // await pages[container].clickAppLauncher();
-    await SetupPage.clickSaleslogo();
+When(/^click Sales logo on (\w+) page$/, async(pagename) => {
+    await pages[pagename].salesLogo.click();
 
 });
 
-When(/^click leads text on setup page$/, async() => {
-    // await pages[container].clickAppLauncher();
-    await SetupPage.clickLeads();
+When(/^click leads text on (\w+) page$/, async(pagename) => {
+    await pages[pagename].leadsArrowText.click();
 
 });
 
-When(/^click new leads text on setup page$/, async() => {
-    // await pages[container].clickAppLauncher();
-    await SetupPage.clickNewLeads();
+When(/^click new leads text on (\w+) page$/, async(pagename) => {
+    await pages[pagename].newLeadText.click();
 
 });
 
-When(/^click save button on setup page$/, async() => {
-    // await pages[container].clickAppLauncher();
-    await SetupPage.clickSave();
+When(/^click save button on (\w+) page$/, async(pagename) => {
+    await pages[pagename].saveButton.click();
 
 });
-When(/^set search bar field as \"(.*)\" on setup page$/, async (text) => {
-    // const webElement = await elements[element]
-    await SetupPage.setText(text);
+When(/^set search bar field as \"(.*)\" on (\w+) page$/, async (text,pagename) => {
+    await pages[pagename].searchBar.setValue(text);
 });
 
-When(/^set lastname field as \"(.*)\" on setup page$/, async (text) => {
-    await SetupPage.lastnameText.setValue(text);
+When(/^set (\w+) field as \"(.*)\" on the (\w+) page$/, async (element,text,pagename) => {
+    await pages[pagename].lastname.setValue(text);
 });
 
-
-When(/^set (\w+) field as \"(.*)\" on (\w+) page$/, async (element,text,paget) => {
-    await pages[paget].companyText.setValue(text);
+When(/^set (\w+) field as \"(.*)\" on (\w+) page$/, async (element,text,pagename) => {
+    await pages[pagename].company.setValue(text);
+    let myObj = await pages[pagename]
+    console.log("this is the ->>" + await pages[pagename])
+    console.log("this is the ->>" +  typeof myObj)
 });
