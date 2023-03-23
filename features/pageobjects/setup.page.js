@@ -7,38 +7,38 @@ class SetupPage extends Page{
         return $('span[title="Setup"]');
     }
 
-    get applauncherButton(){
+    get appLauncherbutton(){
         return $('.slds-icon-waffle');
     }
 
-    get searchBar(){
+    get searchbarField(){
         return $('//label[text()="Search apps and items..."]/..//input');
     }
-    get salesLogo(){
+    get saleslogo(){
         return $('//a[@data-label="Sales"]//b');
     }
 
-    get leadsArrowText(){
+    get leadstext(){
         return $('//span[@class="slds-truncate" and text()="Leads"]/..//following-sibling::one-app-nav-bar-item-dropdown//lightning-primitive-icon');
     }
 
-    get newLeadText(){
+    get newleadstext(){
         return $('//span[text()="New Lead"]/..//lightning-icon//span');
     }
 
-    get lastname(){
+    get lastnameField(){
         return $('//input[@name="lastName"]');
     }
 
-    get company(){
+    get companyField(){
         return $('//input[@name="Company"]');
     }
 
-    get saveButton(){
+    get savebutton(){
         return $('//button[@name="SaveEdit"]');
     }
 
-    get nameheader(){
+    get nameheaderText(){
         return $('//lightning-formatted-name[@slot="primaryField"]')
     }
 
