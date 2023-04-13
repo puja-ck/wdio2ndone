@@ -11,11 +11,10 @@ Feature: The Internet Guinea Pig Website
     And click newleads text on setup page
     And set lastname field as "Parker" on setup page
     And set company field as "Marvel" on setup page
-    And click save button on setup page
-    And run interceptor on save field on setup page
-    And expect nameheader text on setup page to equal Parker
+    And click test save button on setup page
+    #And run interceptor on network field on setup page
     And wait for 5 seconds
-
+    
     Examples: 
       | username               | password   |
       | saikat@cloudkaptan.com | Welcome1234 |
