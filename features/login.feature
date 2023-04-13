@@ -12,9 +12,10 @@ Feature: The Internet Guinea Pig Website
     And set lastname field as "Parker" on setup page
     And set company field as "Marvel" on setup page
     And click save button on setup page
+    And run interceptor on save field on setup page
     And expect nameheader text on setup page to equal Parker
     And wait for 5 seconds
 
     Examples: 
       | username               | password   |
-      | saikat@cloudkaptan.com | Welcome123 |
+      | saikat@cloudkaptan.com | Welcome1234 |

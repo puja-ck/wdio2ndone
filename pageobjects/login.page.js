@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 // import setText from './reusables/reusable';
 
 const Page = require('./page');

@@ -1,4 +1,3 @@
-const { expect } = require('chai');
 
 const Page = require('./page');
 
