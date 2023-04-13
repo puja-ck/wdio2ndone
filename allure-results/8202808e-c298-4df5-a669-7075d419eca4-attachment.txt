@@ -1,0 +1,5 @@
+{
+  "excludedUrls": [],
+  "interceptorDisabled": false,
+  "requests": []
+}

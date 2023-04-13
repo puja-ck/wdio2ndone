@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//lightning-formatted-name[@slot=\"primaryField\"]"
+}
